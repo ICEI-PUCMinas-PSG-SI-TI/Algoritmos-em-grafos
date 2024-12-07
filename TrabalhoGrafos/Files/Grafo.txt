@@ -1,0 +1,5 @@
+c Exemplo de grafo ponderado
+p edge 4 3
+e 1 2 10
+e 2 3 20
+e 3 4 30

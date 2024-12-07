@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using TrabalhoGrafos;
 
 namespace TrabalhGrafos
 {
@@ -146,10 +148,91 @@ namespace TrabalhGrafos
             ImprimirGrafo(grafo);
         }
 
+
+
+
+        //Leitura do grafo ponderado
+        static GrafoPonderado LerGrafoDIMACSPonderado(string caminhoArquivo)
+    {
+        var arestas = new List<Tuple<int, int, int>>();
+        int numVertices = 0, numArestas = 0;
+
+        foreach (var linha in File.ReadLines(caminhoArquivo))
+        {
+            string[] partes = linha.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            if (partes.Length == 0) continue;
+
+            switch (partes[0])
+            {
+                case "c": // Linha de comentário
+                    // Ignora linhas de comentário
+                    break;
+
+                case "p": // Linha com as especificações do grafo
+                    if (partes.Length >= 4 && partes[1] == "edge")
+                    {
+                        numVertices = int.Parse(partes[2]);
+                        numArestas = int.Parse(partes[3]);
+                    }
+                    break;
+
+                case "e": // Linha com uma aresta ponderada
+                    if (partes.Length >= 4)
+                    {
+                        int vertice1 = int.Parse(partes[1]);
+                        int vertice2 = int.Parse(partes[2]);
+                        int peso = int.Parse(partes[3]);
+                        arestas.Add(new Tuple<int, int, int>(vertice1, vertice2, peso));
+                    }
+                    break;
+
+                default:
+                    throw new FormatException($"Linha não reconhecida: {linha}");
+            }
+        }
+
+        return new GrafoPonderado(numVertices, numArestas, arestas);
+    }
+
+
+
         static void Main(string[] args)
         {
-            int x = ExibirMenu();
-            CriandoGrafo(x);
+
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine("Digite a opção de execicio no menu");
+            Console.WriteLine("1 - Para o execicio 1");
+            Console.WriteLine("2 - Para o execicio 2");
+            string menu = Console.ReadLine();
+            switch (menu)
+            {
+                case "1":
+                    int x = ExibirMenu();
+                    CriandoGrafo(x);
+                break;
+
+                case "2":
+
+                    string filePath = "Files/Grafo.txt"; // Substitua pelo caminho do arquivo
+                    GrafoPonderado grafo = LerGrafoDIMACSPonderado(filePath);
+
+                    // Exibe os dados do grafo
+                    Console.WriteLine($"Número de vértices: {grafo.NumVertices}");
+                    Console.WriteLine($"Número de arestas: {grafo.NumArestas}");
+                    Console.WriteLine("Arestas:");
+                    foreach (var aresta in grafo.Arestas)
+                    {
+                        Console.WriteLine($"{aresta.Item1} -- {aresta.Item2} [peso: {aresta.Item3}]");
+                    }
+
+                break;
+
+                default:
+                    break;
+            }
+
+          
         }
     }
 }
