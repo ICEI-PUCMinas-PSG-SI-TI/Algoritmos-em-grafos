@@ -1,0 +1,15 @@
+C:\Users\Andrey\Desktop\Trabalho Grafos\Algoritmos-em-grafos\TrabalhoGrafos\bin\Debug\net8.0\TrabalhoGrafos.exe
+C:\Users\Andrey\Desktop\Trabalho Grafos\Algoritmos-em-grafos\TrabalhoGrafos\bin\Debug\net8.0\TrabalhoGrafos.deps.json
+C:\Users\Andrey\Desktop\Trabalho Grafos\Algoritmos-em-grafos\TrabalhoGrafos\bin\Debug\net8.0\TrabalhoGrafos.runtimeconfig.json
+C:\Users\Andrey\Desktop\Trabalho Grafos\Algoritmos-em-grafos\TrabalhoGrafos\bin\Debug\net8.0\TrabalhoGrafos.dll
+C:\Users\Andrey\Desktop\Trabalho Grafos\Algoritmos-em-grafos\TrabalhoGrafos\bin\Debug\net8.0\TrabalhoGrafos.pdb
+C:\Users\Andrey\Desktop\Trabalho Grafos\Algoritmos-em-grafos\TrabalhoGrafos\obj\Debug\net8.0\TrabalhoGrafos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Andrey\Desktop\Trabalho Grafos\Algoritmos-em-grafos\TrabalhoGrafos\obj\Debug\net8.0\TrabalhoGrafos.AssemblyInfoInputs.cache
+C:\Users\Andrey\Desktop\Trabalho Grafos\Algoritmos-em-grafos\TrabalhoGrafos\obj\Debug\net8.0\TrabalhoGrafos.AssemblyInfo.cs
+C:\Users\Andrey\Desktop\Trabalho Grafos\Algoritmos-em-grafos\TrabalhoGrafos\obj\Debug\net8.0\TrabalhoGrafos.csproj.CoreCompileInputs.cache
+C:\Users\Andrey\Desktop\Trabalho Grafos\Algoritmos-em-grafos\TrabalhoGrafos\obj\Debug\net8.0\TrabalhoGrafos.sourcelink.json
+C:\Users\Andrey\Desktop\Trabalho Grafos\Algoritmos-em-grafos\TrabalhoGrafos\obj\Debug\net8.0\TrabalhoGrafos.dll
+C:\Users\Andrey\Desktop\Trabalho Grafos\Algoritmos-em-grafos\TrabalhoGrafos\obj\Debug\net8.0\refint\TrabalhoGrafos.dll
+C:\Users\Andrey\Desktop\Trabalho Grafos\Algoritmos-em-grafos\TrabalhoGrafos\obj\Debug\net8.0\TrabalhoGrafos.pdb
+C:\Users\Andrey\Desktop\Trabalho Grafos\Algoritmos-em-grafos\TrabalhoGrafos\obj\Debug\net8.0\TrabalhoGrafos.genruntimeconfig.cache
+C:\Users\Andrey\Desktop\Trabalho Grafos\Algoritmos-em-grafos\TrabalhoGrafos\obj\Debug\net8.0\ref\TrabalhoGrafos.dll
