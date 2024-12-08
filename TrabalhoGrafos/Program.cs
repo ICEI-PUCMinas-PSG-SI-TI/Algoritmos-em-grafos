@@ -153,47 +153,47 @@ namespace TrabalhGrafos
 
         //Leitura do grafo ponderado
         static GrafoPonderado LerGrafoDIMACSPonderado(string caminhoArquivo)
-    {
-        var arestas = new List<Tuple<int, int, int>>();
-        int numVertices = 0, numArestas = 0;
-
-        foreach (var linha in File.ReadLines(caminhoArquivo))
         {
-            string[] partes = linha.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            var arestas = new List<Tuple<int, int, int>>();
+            int numVertices = 0, numArestas = 0;
 
-            if (partes.Length == 0) continue;
-
-            switch (partes[0])
+            foreach (var linha in File.ReadLines(caminhoArquivo))
             {
-                case "c": // Linha de comentário
-                    // Ignora linhas de comentário
-                    break;
+                string[] partes = linha.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-                case "p": // Linha com as especificações do grafo
-                    if (partes.Length >= 4 && partes[1] == "edge")
-                    {
-                        numVertices = int.Parse(partes[2]);
-                        numArestas = int.Parse(partes[3]);
-                    }
-                    break;
+                if (partes.Length == 0) continue;
 
-                case "e": // Linha com uma aresta ponderada
-                    if (partes.Length >= 4)
-                    {
-                        int vertice1 = int.Parse(partes[1]);
-                        int vertice2 = int.Parse(partes[2]);
-                        int peso = int.Parse(partes[3]);
-                        arestas.Add(new Tuple<int, int, int>(vertice1, vertice2, peso));
-                    }
-                    break;
+                switch (partes[0])
+                {
+                    case "c": // Linha de comentário
+                              // Ignora linhas de comentário
+                        break;
 
-                default:
-                    throw new FormatException($"Linha não reconhecida: {linha}");
+                    case "p": // Linha com as especificações do grafo
+                        if (partes.Length >= 4 && partes[1] == "edge")
+                        {
+                            numVertices = int.Parse(partes[2]);
+                            numArestas = int.Parse(partes[3]);
+                        }
+                        break;
+
+                    case "e": // Linha com uma aresta ponderada
+                        if (partes.Length >= 4)
+                        {
+                            int vertice1 = int.Parse(partes[1]);
+                            int vertice2 = int.Parse(partes[2]);
+                            int peso = int.Parse(partes[3]);
+                            arestas.Add(new Tuple<int, int, int>(vertice1, vertice2, peso));
+                        }
+                        break;
+
+                    default:
+                        throw new FormatException($"Linha não reconhecida: {linha}");
+                }
             }
-        }
 
-        return new GrafoPonderado(numVertices, numArestas, arestas);
-    }
+            return new GrafoPonderado(numVertices, numArestas, arestas);
+        }
 
 
 
@@ -210,13 +210,11 @@ namespace TrabalhGrafos
                 case "1":
                     int x = ExibirMenu();
                     CriandoGrafo(x);
-                break;
+                    break;
 
                 case "2":
-
                     string filePath = "Files/Grafo.txt"; // Substitua pelo caminho do arquivo
                     GrafoPonderado grafo = LerGrafoDIMACSPonderado(filePath);
-
                     // Exibe os dados do grafo
                     Console.WriteLine($"Número de vértices: {grafo.NumVertices}");
                     Console.WriteLine($"Número de arestas: {grafo.NumArestas}");
@@ -226,13 +224,58 @@ namespace TrabalhGrafos
                         Console.WriteLine($"{aresta.Item1} -- {aresta.Item2} [peso: {aresta.Item3}]");
                     }
 
-                break;
+
+                    //SubMenu Questão 2
+
+
+                    Console.WriteLine("----------------------------------");
+                    Console.WriteLine("Digite a opção do execicio 2");
+                    Console.WriteLine(" A - Para a letra 'A' do exercicio 2");
+                    string submenu = Console.ReadLine();
+                    if (submenu == "A")
+                    {
+
+
+
+                        // Solicita ao usuário a aresta de interesse
+                        Console.WriteLine("\nInforme uma aresta no formato 'u v':");
+                        string input = Console.ReadLine();
+                        string[] partes = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+                        if (partes.Length == 2 &&
+                            int.TryParse(partes[0], out int vertice1) &&
+                            int.TryParse(partes[1], out int vertice2))
+                        {
+                            var adjacentes = grafo.EncontrarArestasAdjacentes(vertice1, vertice2);
+
+                            Console.WriteLine($"\nArestas adjacentes a {vertice1} -- {vertice2}:");
+                            if (adjacentes.Any())
+                            {
+                                foreach (var aresta in adjacentes)
+                                {
+                                    Console.WriteLine($"{aresta.Item1} -- {aresta.Item2} [peso: {aresta.Item3}]");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Nenhuma aresta adjacente encontrada.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Entrada inválida. Certifique-se de informar dois inteiros separados por espaço.");
+                        }
+
+                    }
+
+                    break;
 
                 default:
                     break;
+
             }
 
-          
+
         }
     }
 }
