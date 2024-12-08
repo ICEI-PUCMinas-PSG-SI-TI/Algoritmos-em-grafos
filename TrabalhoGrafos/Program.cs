@@ -231,6 +231,7 @@ namespace TrabalhGrafos
                     Console.WriteLine("----------------------------------");
                     Console.WriteLine("Digite a opção do execicio 2");
                     Console.WriteLine(" A - Para a letra 'A' do exercicio 2");
+                    Console.WriteLine(" B - Para a letra 'B' do exercicio 2");
                     string submenu = Console.ReadLine();
                     if (submenu == "A")
                     {
@@ -267,15 +268,41 @@ namespace TrabalhGrafos
                         }
 
                     }
+                    else if (submenu == "B")
+                    {
+                        // Solicita ao usuário o vértice de interesse
+                        Console.WriteLine("\nInforme o vértice para encontrar os vértices adjacentes:");
+                        string input = Console.ReadLine();
 
+                        if (int.TryParse(input, out int vertice))
+                        {
+                            var adjacentes = grafo.EncontrarVerticesAdjacentes(vertice);
+
+                            Console.WriteLine($"\nVértices adjacentes ao vértice {vertice}:");
+                            if (adjacentes.Any())
+                            {
+                                Console.WriteLine(string.Join(", ", adjacentes));
+                            }
+                            else
+                            {
+                                Console.WriteLine("Nenhum vértice adjacente encontrado.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Entrada inválida. Certifique-se de informar um número inteiro.");
+                        }
+                    }
+            
+
+            break;
+
+            default:
                     break;
-
-                default:
-                    break;
-
-            }
-
 
         }
+
+
     }
+}
 }
