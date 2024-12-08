@@ -30,17 +30,28 @@ namespace TrabalhoGrafos
         }
 
 
-          /// <summary>
-    /// Encontra os vértices adjacentes a um vértice especificado.
-    /// </summary>
-    public List<int> EncontrarVerticesAdjacentes(int v)
-    {
-        return Arestas
-            .Where(aresta => aresta.Item1 == v || aresta.Item2 == v) // Verifica adjacência
-            .Select(aresta => aresta.Item1 == v ? aresta.Item2 : aresta.Item1) // Retorna o outro vértice
-            .Distinct() // Remove duplicatas
-            .ToList();
-    }
+        /// <summary>
+        /// Encontra os vértices adjacentes a um vértice especificado.
+        /// </summary>
+        public List<int> EncontrarVerticesAdjacentes(int v)
+        {
+            return Arestas
+                .Where(aresta => aresta.Item1 == v || aresta.Item2 == v) // Verifica adjacência
+                .Select(aresta => aresta.Item1 == v ? aresta.Item2 : aresta.Item1) // Retorna o outro vértice
+                .Distinct() // Remove duplicatas
+                .ToList();
+        }
+
+
+        /// <summary>
+        /// Encontra as arestas incidentes a um vértice especificado.
+        /// </summary>
+        public List<Tuple<int, int, int>> EncontrarArestasIncidentes(int v)
+        {
+            return Arestas
+                .Where(aresta => aresta.Item1 == v || aresta.Item2 == v) // Verifica se o vértice está presente
+                .ToList();
+        }
 
 
     }

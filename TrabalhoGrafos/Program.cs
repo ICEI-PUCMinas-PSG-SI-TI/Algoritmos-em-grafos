@@ -293,16 +293,44 @@ namespace TrabalhGrafos
                             Console.WriteLine("Entrada inválida. Certifique-se de informar um número inteiro.");
                         }
                     }
-            
+                    else if (submenu == "C")
+                    {
+                        // Solicita ao usuário o vértice de interesse
+                        Console.WriteLine("\nInforme o vértice para encontrar as arestas incidentes:");
+                        string input = Console.ReadLine();
 
-            break;
+                        if (int.TryParse(input, out int vertice))
+                        {
+                            var incidentes = grafo.EncontrarArestasIncidentes(vertice);
 
-            default:
+                            Console.WriteLine($"\nArestas incidentes ao vértice {vertice}:");
+                            if (incidentes.Any())
+                            {
+                                foreach (var aresta in incidentes)
+                                {
+                                    Console.WriteLine($"{aresta.Item1} -- {aresta.Item2} [peso: {aresta.Item3}]");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Nenhuma aresta incidente encontrada.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Entrada inválida. Certifique-se de informar um número inteiro.");
+                        }
+                    }
+
+
                     break;
 
+                default:
+                    break;
+
+            }
+
+
         }
-
-
     }
-}
 }
