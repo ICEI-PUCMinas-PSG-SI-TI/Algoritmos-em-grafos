@@ -80,5 +80,23 @@ namespace TrabalhoGrafos
         }
 
 
+        /// <summary>
+        /// Atualiza o peso de uma aresta especificada.
+        /// </summary>
+        public bool AtualizarPesoAresta(int v1, int v2, int novoPeso)
+        {
+            for (int i = 0; i < Arestas.Count; i++)
+            {
+                var aresta = Arestas[i];
+                if ((aresta.Item1 == v1 && aresta.Item2 == v2) || (aresta.Item1 == v2 && aresta.Item2 == v1))
+                {
+                    Arestas[i] = new Tuple<int, int, int>(aresta.Item1, aresta.Item2, novoPeso);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
     }
 }

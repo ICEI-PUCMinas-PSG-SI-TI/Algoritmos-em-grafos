@@ -230,11 +230,13 @@ namespace TrabalhGrafos
 
                     Console.WriteLine("----------------------------------");
                     Console.WriteLine("Digite a opção do execicio 2");
-                    Console.WriteLine(" 1 - Para a letra 'A' do exercicio 2");
-                    Console.WriteLine(" 2 - Para a letra 'B' do exercicio 2");
-                    Console.WriteLine(" 3 - Para a letra 'C' do exercicio 2");
-                    Console.WriteLine(" 4 - Para a letra 'D' do exercicio 2");
-                    Console.WriteLine(" 5 - Para a letra 'E' do exercicio 2");
+                    Console.WriteLine(" 1 - Para a letra '1' do exercicio 2");
+                    Console.WriteLine(" 2 - Para a letra '2' do exercicio 2");
+                    Console.WriteLine(" 3 - Para a letra '3' do exercicio 2");
+                    Console.WriteLine(" 4 - Para a letra '4' do exercicio 2");
+                    Console.WriteLine(" 5 - Para a letra '5' do exercicio 2");
+                    Console.WriteLine(" 6 - Para a letra '6' do exercicio 2");
+                    Console.WriteLine(" 7 - Para a letra '7' do exercicio 2");
                     string submenu = Console.ReadLine();
                     if (submenu == "1")
                     {
@@ -422,6 +424,50 @@ namespace TrabalhGrafos
                             Console.WriteLine("Nenhuma entrada fornecida.");
                         }
 
+                    }
+                    else if (submenu == "7")
+                    {
+                        // Solicita ao usuário os vértices e o novo peso da aresta
+                        Console.WriteLine("\nInforme os dois vértices da aresta e o novo peso separados por espaço (exemplo: 1 2 50):");
+                        string input = Console.ReadLine();
+
+                        if (!string.IsNullOrWhiteSpace(input))
+                        {
+                            var partes = input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                                              .Select(p => int.TryParse(p, out int valor) ? valor : (int?)null)
+                                              .ToArray();
+
+                            if (partes.Length == 3 && partes[0].HasValue && partes[1].HasValue && partes[2].HasValue)
+                            {
+                                int vertice1 = partes[0].Value;
+                                int vertice2 = partes[1].Value;
+                                int novoPeso = partes[2].Value;
+
+                                bool atualizado = grafo.AtualizarPesoAresta(vertice1, vertice2, novoPeso);
+
+                                if (atualizado)
+                                {
+                                    Console.WriteLine($"\nPeso da aresta ({vertice1} -- {vertice2}) atualizado para {novoPeso}.");
+                                    Console.WriteLine("Arestas atualizadas:");
+                                    foreach (var aresta in grafo.Arestas)
+                                    {
+                                        Console.WriteLine($"{aresta.Item1} -- {aresta.Item2} [peso: {aresta.Item3}]");
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("\nAresta não encontrada no grafo.");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Entrada inválida. Certifique-se de informar dois vértices e o peso como números inteiros.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nenhuma entrada fornecida.");
+                        }
                     }
 
 
