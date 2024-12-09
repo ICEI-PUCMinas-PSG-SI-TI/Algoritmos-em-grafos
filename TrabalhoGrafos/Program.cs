@@ -232,6 +232,9 @@ namespace TrabalhGrafos
                     Console.WriteLine("Digite a opção do execicio 2");
                     Console.WriteLine(" A - Para a letra 'A' do exercicio 2");
                     Console.WriteLine(" B - Para a letra 'B' do exercicio 2");
+                    Console.WriteLine(" C - Para a letra 'C' do exercicio 2");
+                    Console.WriteLine(" D - Para a letra 'D' do exercicio 2");
+                    Console.WriteLine(" E - Para a letra 'E' do exercicio 2");
                     string submenu = Console.ReadLine();
                     if (submenu == "A")
                     {
@@ -321,6 +324,67 @@ namespace TrabalhGrafos
                             Console.WriteLine("Entrada inválida. Certifique-se de informar um número inteiro.");
                         }
                     }
+                    else if (submenu == "D")
+                    {
+                        // Solicita ao usuário os vértices que definem a aresta
+                        Console.WriteLine("\nInforme os dois vértices da aresta separados por espaço (exemplo: 1 2):");
+                        string input = Console.ReadLine();
+
+                        if (!string.IsNullOrWhiteSpace(input))
+                        {
+                            var vertices = input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                                                .Select(v => int.TryParse(v, out int vertice) ? vertice : (int?)null)
+                                                .ToArray();
+
+                            if (vertices.Length == 2 && vertices[0].HasValue && vertices[1].HasValue)
+                            {
+                                int vertice1 = vertices[0].Value;
+                                int vertice2 = vertices[1].Value;
+
+                                var incidente = grafo.EncontrarAresta(vertice1, vertice2);
+
+                                if (incidente != null)
+                                {
+                                    Console.WriteLine($"\nVértices incidentes à aresta ({vertice1} -- {vertice2}):");
+                                    Console.WriteLine($"{vertice1}, {vertice2}");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Aresta não encontrada no grafo.");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Entrada inválida. Certifique-se de informar dois números inteiros.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nenhuma entrada fornecida.");
+                        }
+
+                    }
+                    else if (submenu == "E")
+                    {
+
+
+                        // Solicita ao usuário o vértice para calcular o grau
+                        Console.WriteLine("\nInforme o vértice para calcular o grau:");
+                        string input = Console.ReadLine();
+
+                        if (int.TryParse(input, out int vertice))
+                        {
+                            int grau = grafo.CalcularGrau(vertice);
+
+                            Console.WriteLine($"\nGrau do vértice {vertice}: {grau}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Entrada inválida. Certifique-se de informar um número inteiro.");
+                        }
+
+                    }
+
 
 
                     break;

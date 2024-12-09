@@ -53,6 +53,23 @@ namespace TrabalhoGrafos
                 .ToList();
         }
 
+        /// <summary>
+        /// Encontra a aresta que conecta dois vértices.
+        /// </summary>
+        public Tuple<int, int, int> EncontrarAresta(int v1, int v2)
+        {
+            return Arestas.FirstOrDefault(aresta =>
+                (aresta.Item1 == v1 && aresta.Item2 == v2) || (aresta.Item1 == v2 && aresta.Item2 == v1));
+        }
+
+        /// <summary>
+        /// Calcula o grau de um vértice especificado.
+        /// </summary>
+        public int CalcularGrau(int v)
+        {
+            return Arestas.Count(aresta => aresta.Item1 == v || aresta.Item2 == v);
+        }
+
 
     }
 }
