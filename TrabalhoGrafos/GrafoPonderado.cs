@@ -98,5 +98,19 @@ namespace TrabalhoGrafos
         }
 
 
+         /// <summary>
+    /// Troca os vértices especificados.
+    /// </summary>
+    public void TrocarVertices(int v1, int v2)
+    {
+        Arestas = Arestas.Select(aresta =>
+        {
+            int novoVertice1 = aresta.Item1 == v1 ? v2 : (aresta.Item1 == v2 ? v1 : aresta.Item1);
+            int novoVertice2 = aresta.Item2 == v1 ? v2 : (aresta.Item2 == v2 ? v1 : aresta.Item2);
+            return new Tuple<int, int, int>(novoVertice1, novoVertice2, aresta.Item3);
+        }).ToList();
+    }
+
+
     }
 }

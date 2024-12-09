@@ -237,6 +237,7 @@ namespace TrabalhGrafos
                     Console.WriteLine(" 5 - Para a letra '5' do exercicio 2");
                     Console.WriteLine(" 6 - Para a letra '6' do exercicio 2");
                     Console.WriteLine(" 7 - Para a letra '7' do exercicio 2");
+                    Console.WriteLine(" 8 - Para a letra '8' do exercicio 2");
                     string submenu = Console.ReadLine();
                     if (submenu == "1")
                     {
@@ -462,6 +463,42 @@ namespace TrabalhGrafos
                             else
                             {
                                 Console.WriteLine("Entrada inválida. Certifique-se de informar dois vértices e o peso como números inteiros.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nenhuma entrada fornecida.");
+                        }
+                    }
+                    else if (submenu == "8")
+                    {
+                        // Solicita ao usuário os dois vértices para trocar
+                        Console.WriteLine("\nInforme os dois vértices a serem trocados separados por espaço (exemplo: 1 2):");
+                        string input = Console.ReadLine();
+
+                        if (!string.IsNullOrWhiteSpace(input))
+                        {
+                            var vertices = input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                                                .Select(v => int.TryParse(v, out int vertice) ? vertice : (int?)null)
+                                                .ToArray();
+
+                            if (vertices.Length == 2 && vertices[0].HasValue && vertices[1].HasValue)
+                            {
+                                int vertice1 = vertices[0].Value;
+                                int vertice2 = vertices[1].Value;
+
+                                grafo.TrocarVertices(vertice1, vertice2);
+
+                                Console.WriteLine($"\nOs vértices {vertice1} e {vertice2} foram trocados.");
+                                Console.WriteLine("Arestas atualizadas:");
+                                foreach (var aresta in grafo.Arestas)
+                                {
+                                    Console.WriteLine($"{aresta.Item1} -- {aresta.Item2} [peso: {aresta.Item3}]");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Entrada inválida. Certifique-se de informar dois números inteiros.");
                             }
                         }
                         else
