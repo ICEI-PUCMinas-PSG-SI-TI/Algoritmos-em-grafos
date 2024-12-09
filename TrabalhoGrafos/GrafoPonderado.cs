@@ -70,6 +70,15 @@ namespace TrabalhoGrafos
             return Arestas.Count(aresta => aresta.Item1 == v || aresta.Item2 == v);
         }
 
+        /// <summary>
+        /// Verifica se dois vértices são adjacentes.
+        /// </summary>
+        public bool SaoAdjacentes(int v1, int v2)
+        {
+            return Arestas.Any(aresta =>
+                (aresta.Item1 == v1 && aresta.Item2 == v2) || (aresta.Item1 == v2 && aresta.Item2 == v1));
+        }
+
 
     }
 }

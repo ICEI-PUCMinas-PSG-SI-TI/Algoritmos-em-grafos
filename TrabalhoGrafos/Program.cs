@@ -230,13 +230,13 @@ namespace TrabalhGrafos
 
                     Console.WriteLine("----------------------------------");
                     Console.WriteLine("Digite a opção do execicio 2");
-                    Console.WriteLine(" A - Para a letra 'A' do exercicio 2");
-                    Console.WriteLine(" B - Para a letra 'B' do exercicio 2");
-                    Console.WriteLine(" C - Para a letra 'C' do exercicio 2");
-                    Console.WriteLine(" D - Para a letra 'D' do exercicio 2");
-                    Console.WriteLine(" E - Para a letra 'E' do exercicio 2");
+                    Console.WriteLine(" 1 - Para a letra 'A' do exercicio 2");
+                    Console.WriteLine(" 2 - Para a letra 'B' do exercicio 2");
+                    Console.WriteLine(" 3 - Para a letra 'C' do exercicio 2");
+                    Console.WriteLine(" 4 - Para a letra 'D' do exercicio 2");
+                    Console.WriteLine(" 5 - Para a letra 'E' do exercicio 2");
                     string submenu = Console.ReadLine();
-                    if (submenu == "A")
+                    if (submenu == "1")
                     {
 
 
@@ -271,7 +271,7 @@ namespace TrabalhGrafos
                         }
 
                     }
-                    else if (submenu == "B")
+                    else if (submenu == "2")
                     {
                         // Solicita ao usuário o vértice de interesse
                         Console.WriteLine("\nInforme o vértice para encontrar os vértices adjacentes:");
@@ -296,7 +296,7 @@ namespace TrabalhGrafos
                             Console.WriteLine("Entrada inválida. Certifique-se de informar um número inteiro.");
                         }
                     }
-                    else if (submenu == "C")
+                    else if (submenu == "3")
                     {
                         // Solicita ao usuário o vértice de interesse
                         Console.WriteLine("\nInforme o vértice para encontrar as arestas incidentes:");
@@ -324,7 +324,7 @@ namespace TrabalhGrafos
                             Console.WriteLine("Entrada inválida. Certifique-se de informar um número inteiro.");
                         }
                     }
-                    else if (submenu == "D")
+                    else if (submenu == "4")
                     {
                         // Solicita ao usuário os vértices que definem a aresta
                         Console.WriteLine("\nInforme os dois vértices da aresta separados por espaço (exemplo: 1 2):");
@@ -364,7 +364,7 @@ namespace TrabalhGrafos
                         }
 
                     }
-                    else if (submenu == "E")
+                    else if (submenu == "5")
                     {
 
 
@@ -381,6 +381,45 @@ namespace TrabalhGrafos
                         else
                         {
                             Console.WriteLine("Entrada inválida. Certifique-se de informar um número inteiro.");
+                        }
+
+                    }
+                    else if (submenu == "6")
+                    {
+                        // Solicita ao usuário dois vértices para verificar adjacência
+                        Console.WriteLine("\nInforme dois vértices separados por espaço (exemplo: 1 2):");
+                        string input = Console.ReadLine();
+
+                        if (!string.IsNullOrWhiteSpace(input))
+                        {
+                            var vertices = input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                                                .Select(v => int.TryParse(v, out int vertice) ? vertice : (int?)null)
+                                                .ToArray();
+
+                            if (vertices.Length == 2 && vertices[0].HasValue && vertices[1].HasValue)
+                            {
+                                int vertice1 = vertices[0].Value;
+                                int vertice2 = vertices[1].Value;
+
+                                bool adjacentes = grafo.SaoAdjacentes(vertice1, vertice2);
+
+                                if (adjacentes)
+                                {
+                                    Console.WriteLine($"\nOs vértices {vertice1} e {vertice2} são adjacentes.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"\nOs vértices {vertice1} e {vertice2} não são adjacentes.");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Entrada inválida. Certifique-se de informar dois números inteiros.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nenhuma entrada fornecida.");
                         }
 
                     }
