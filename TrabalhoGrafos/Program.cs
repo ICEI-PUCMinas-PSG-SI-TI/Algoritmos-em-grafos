@@ -230,18 +230,18 @@ namespace TrabalhGrafos
 
                     Console.WriteLine("----------------------------------");
                     Console.WriteLine("Digite a opção do execicio 2");
-                    Console.WriteLine(" 1 - Para a letra '1' do exercicio 2");
-                    Console.WriteLine(" 2 - Para a letra '2' do exercicio 2");
-                    Console.WriteLine(" 3 - Para a letra '3' do exercicio 2");
-                    Console.WriteLine(" 4 - Para a letra '4' do exercicio 2");
-                    Console.WriteLine(" 5 - Para a letra '5' do exercicio 2");
-                    Console.WriteLine(" 6 - Para a letra '6' do exercicio 2");
-                    Console.WriteLine(" 7 - Para a letra '7' do exercicio 2");
-                    Console.WriteLine(" 8 - Para a letra '8' do exercicio 2");
-                    Console.WriteLine(" 9 - Para a letra '9' do exercicio 2");
-                    Console.WriteLine(" 10 - Para a letra '10' do exercicio 2");
-                    Console.WriteLine(" 11 - Para a letra '11' do exercicio 2");
-                    Console.WriteLine(" 12 - Para a letra '12' do exercicio 2");
+                    Console.WriteLine(" 1 - Para a letra '1' do exercicio 2 Imprimir todas as arestas adjacentes a uma aresta a");
+                    Console.WriteLine(" 2 - Para a letra '2' do exercicio 2 Imprimir todos os vértices adjacentes a um vértice v");
+                    Console.WriteLine(" 3 - Para a letra '3' do exercicio 2 Imprimir todas as arestas incidentes a um vértice v");
+                    Console.WriteLine(" 4 - Para a letra '4' do exercicio 2 Imprimir todos os vértices incidentes a uma aresta a");
+                    Console.WriteLine(" 5 - Para a letra '5' do exercicio 2 Imprimir o grau do vértice");
+                    Console.WriteLine(" 6 - Para a letra '6' do exercicio 2 Determinar se dois vértices são adjacentes");
+                    Console.WriteLine(" 7 - Para a letra '7' do exercicio 2 Substituir o peso de uma aresta");
+                    Console.WriteLine(" 8 - Para a letra '8' do exercicio 2 Trocar dois vértices");
+                    Console.WriteLine(" 9 - Para a letra '9' do exercicio 2 Busca em Largura");
+                    Console.WriteLine(" 10 - Para a letra '10' do exercicio 2 Busca em Profundidade");
+                    Console.WriteLine(" 11 - Para a letra '11' do exercicio 2 Algoritmo de Dijkstra");
+                    Console.WriteLine(" 12 - Para a letra '12' do exercicio 2 Algoritmo de Floyd Warshal");
                     string submenu = Console.ReadLine();
                     if (submenu == "1")
                     {
