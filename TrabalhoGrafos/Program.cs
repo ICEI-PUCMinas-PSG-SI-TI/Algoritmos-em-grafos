@@ -238,11 +238,13 @@ namespace TrabalhGrafos
                     Console.WriteLine(" 6 - Para a letra '6' do exercicio 2");
                     Console.WriteLine(" 7 - Para a letra '7' do exercicio 2");
                     Console.WriteLine(" 8 - Para a letra '8' do exercicio 2");
+                    Console.WriteLine(" 9 - Para a letra '9' do exercicio 2");
+                    Console.WriteLine(" 10 - Para a letra '10' do exercicio 2");
+                    Console.WriteLine(" 11 - Para a letra '11' do exercicio 2");
+                    Console.WriteLine(" 12 - Para a letra '12' do exercicio 2");
                     string submenu = Console.ReadLine();
                     if (submenu == "1")
                     {
-
-
 
                         // Solicita ao usuário a aresta de interesse
                         Console.WriteLine("\nInforme uma aresta no formato 'u v':");
@@ -506,7 +508,169 @@ namespace TrabalhGrafos
                             Console.WriteLine("Nenhuma entrada fornecida.");
                         }
                     }
+                    else if (submenu == "9")
+                    {
 
+                        // Solicita ao usuário o vértice inicial
+                        Console.WriteLine("\nInforme o vértice inicial para a busca em largura:");
+                        string input = Console.ReadLine();
+
+                        if (int.TryParse(input, out int verticeInicial))
+                        {
+                            if (verticeInicial < 1 || verticeInicial > grafo.NumVertices)
+                            {
+                                Console.WriteLine($"O vértice informado está fora do intervalo válido (1-{grafo.NumVertices}).");
+                                return;
+                            }
+
+                            Console.WriteLine("\nRealizando busca em largura...");
+                            var (nivel, predecessores, arvore) = grafo.BuscaEmLargura(verticeInicial);
+
+                            Console.WriteLine("\nÁrvore de busca:");
+                            foreach (var aresta in arvore)
+                            {
+                                Console.WriteLine($"{aresta.Item1} -- {aresta.Item2}");
+                            }
+
+                            Console.WriteLine("\nNíveis dos vértices:");
+                            foreach (var (vertice, nivelVertice) in nivel)
+                            {
+                                Console.WriteLine($"Vértice {vertice}: Nível {nivelVertice}");
+                            }
+
+                            Console.WriteLine("\nPredecessores dos vértices:");
+                            foreach (var (vertice, predecessor) in predecessores)
+                            {
+                                Console.WriteLine($"Vértice {vertice}: Predecessor {(predecessor.HasValue ? predecessor.ToString() : "N/A")}");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Entrada inválida. Por favor, informe um número inteiro.");
+                        }
+
+                    }
+                    else if (submenu == "10")
+                    {
+                        // Solicita ao usuário o vértice inicial
+                        Console.WriteLine("\nInforme o vértice inicial para a busca em profundidade:");
+                        string input = Console.ReadLine();
+
+                        if (int.TryParse(input, out int verticeInicial))
+                        {
+                            if (verticeInicial < 1 || verticeInicial > grafo.NumVertices)
+                            {
+                                Console.WriteLine($"O vértice informado está fora do intervalo válido (1-{grafo.NumVertices}).");
+                                return;
+                            }
+
+                            Console.WriteLine("\nRealizando busca em profundidade...");
+                            var (descoberta, finalizacao, arvore) = grafo.BuscaEmProfundidade(verticeInicial);
+
+                            Console.WriteLine("\nÁrvore de busca:");
+                            foreach (var aresta in arvore)
+                            {
+                                Console.WriteLine($"{aresta.Item1} -- {aresta.Item2}");
+                            }
+
+                            Console.WriteLine("\nTempos de descoberta e finalização:");
+                            foreach (var vertice in descoberta.Keys.OrderBy(v => v))
+                            {
+                                Console.WriteLine($"Vértice {vertice}: Descoberta {descoberta[vertice]}, Finalização {finalizacao[vertice]}");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Entrada inválida. Por favor, informe um número inteiro.");
+                        }
+                    }
+                    else if (submenu == "11")
+                    {
+                        // Solicita ao usuário os vértices de origem e destino
+                        Console.WriteLine("\nInforme o vértice de origem:");
+                        string inputOrigem = Console.ReadLine();
+                        Console.WriteLine("Informe o vértice de destino:");
+                        string inputDestino = Console.ReadLine();
+
+                        if (int.TryParse(inputOrigem, out int origem) && int.TryParse(inputDestino, out int destino))
+                        {
+                            if (origem < 1 || origem > grafo.NumVertices || destino < 1 || destino > grafo.NumVertices)
+                            {
+                                Console.WriteLine($"Os vértices informados estão fora do intervalo válido (1-{grafo.NumVertices}).");
+                                return;
+                            }
+
+                            Console.WriteLine("\nExecutando o algoritmo de Dijkstra...");
+                            var (distancia, caminho) = grafo.Dijkstra(origem, destino);
+
+                            if (distancia == int.MaxValue)
+                            {
+                                Console.WriteLine($"Não há caminho entre os vértices {origem} e {destino}.");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"\nCusto do caminho mínimo: {distancia}");
+                                Console.WriteLine("Caminho utilizado:");
+                                for (int i = 0; i < caminho.Count - 1; i++)
+                                {
+                                    int v1 = caminho[i];
+                                    int v2 = caminho[i + 1];
+                                    int peso = grafo.ObterPesoAresta(v1, v2);
+                                    Console.WriteLine($"{v1} --({peso})--> {v2}");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Entradas inválidas. Por favor, informe números inteiros.");
+                        }
+
+
+                    }
+                    else if (submenu == "12")
+                    {
+                        Console.WriteLine("\nExecutando o algoritmo de Floyd-Warshall...");
+                        var (dist, next) = grafo.FloydWarshall();
+
+                        Console.WriteLine("\nMatriz de distâncias:");
+                        for (int i = 1; i <= grafo.NumVertices; i++)
+                        {
+                            for (int j = 1; j <= grafo.NumVertices; j++)
+                            {
+                                if (dist[i, j] == int.MaxValue)
+                                    Console.Write("INF\t");
+                                else
+                                    Console.Write($"{dist[i, j]}\t");
+                            }
+                            Console.WriteLine();
+                        }
+
+                        Console.WriteLine("\nInforme o vértice de origem para reconstruir os caminhos:");
+                        string input = Console.ReadLine();
+
+                        if (int.TryParse(input, out int origem) && origem >= 1 && origem <= grafo.NumVertices)
+                        {
+                            Console.WriteLine($"\nCaminhos mínimos a partir do vértice {origem}:");
+                            for (int destino = 1; destino <= grafo.NumVertices; destino++)
+                            {
+                                if (origem == destino) continue;
+                                var caminho = grafo.ReconstruirCaminho(origem, destino, next);
+                                if (caminho.Count > 0)
+                                {
+                                    Console.WriteLine($"Para {destino}: {string.Join(" -> ", caminho)} (Custo: {dist[origem, destino]})");
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Para {destino}: Não há caminho.");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Entrada inválida. Por favor, informe um número inteiro válido.");
+                        }
+
+                    }
 
 
                     break;
